@@ -51,8 +51,10 @@ class ViewController: UIViewController {
         
         if userAnswer == actualAnswer{
             print("GoodJob")
+            sender.backgroundColor = UIColor.green
         }else{
             print("Idiot")
+            sender.backgroundColor = UIColor.red
         }
         
         //--MARK: Validasi jumlah pertanyaan untuk fix(index out of range)
@@ -63,14 +65,16 @@ class ViewController: UIViewController {
             print("Repeat!")
             questionNumber = 0
         }
-        updateUI()
         
-        
+        //--MARK: Animasi untuk menampilkan warna background
+        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateUI), userInfo: nil, repeats: false)
     }
     
-    func updateUI(){
+    @objc func updateUI(){
         //questionLabel.text = quiz[questionNumber][0]
         questionLabel.text = quiz[questionNumber].text
+        trueButton.backgroundColor = UIColor.clear
+        falseButton.backgroundColor = UIColor.clear
     }
     
 }
