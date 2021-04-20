@@ -11,4 +11,10 @@ import Foundation
 struct Question {
     var text: String
     var answer: String
+    
+    //--MARK: Membuat Init
+    init(q: String, a: String) {
+        text = q
+        answer = a
+    }
 }
