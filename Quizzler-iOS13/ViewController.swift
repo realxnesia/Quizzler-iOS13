@@ -16,9 +16,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var falseButton: UIButton!
     
     let quiz = [
+        Question(text: "1 + 1 is equal to 2", answer: "True"),
+        Question(text: "2 - 2 is equal to 4", answer: "False"),
+        Question(text: "1 / 0 is equal to 0", answer: "True")
+/*
         ["1 + 1 is equal to 2","True"],
         ["2 - 2 is equal to 4","False"],
         ["1 / 0 is equal to 0","True"]
+ */
     ]
     var questionNumber = 0
     
@@ -31,7 +36,8 @@ class ViewController: UIViewController {
     @IBAction func answerButtonPressed(_ sender: UIButton) {
         //--MARK: Cek Jawaban
         let userAnswer = sender.currentTitle //True, False
-        let actualAnswer = quiz[questionNumber][1] //kok 1? kalau bingung coba pahami array 2D
+//        let actualAnswer = quiz[questionNumber][1] //kok 1? kalau bingung coba pahami array 2D
+        let actualAnswer = quiz[questionNumber].answer
         
         if userAnswer == actualAnswer{
             print("GoodJob")
@@ -53,7 +59,8 @@ class ViewController: UIViewController {
     }
     
     func updateUI(){
-        questionLabel.text = quiz[questionNumber][0]
+        //questionLabel.text = quiz[questionNumber][0]
+        questionLabel.text = quiz[questionNumber].text
     }
     
 }
