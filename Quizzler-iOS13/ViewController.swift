@@ -16,9 +16,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var falseButton: UIButton!
     
     let quiz = [
-        "1 + 1 is equal to 2",
-        "2 - 2 is equal to 4",
-        "1 / 0 is equal to 0"
+        ["1 + 1 is equal to 2","True"],
+        ["2 - 2 is equal to 4","False"],
+        ["1 / 0 is equal to 0","True"]
     ]
     var questionNumber = 0
     
@@ -29,13 +29,31 @@ class ViewController: UIViewController {
     }
 
     @IBAction func answerButtonPressed(_ sender: UIButton) {
-        questionNumber += 1
+        //--MARK: Cek Jawaban
+        let userAnswer = sender.currentTitle //True, False
+        let actualAnswer = quiz[questionNumber][1] //kok 1? kalau bingung coba pahami array 2D
+        
+        if userAnswer == actualAnswer{
+            print("GoodJob")
+        }else{
+            print("Idiot")
+        }
+        
+        //--MARK: Validasi jumlah pertanyaan untuk fix(index out of range)
+        if questionNumber + 1 < quiz.count{
+            //note: questionNumber kan index, bukan jumlah.
+            questionNumber += 1
+        }else{
+            print("Repeat!")
+            questionNumber = 0
+        }
         updateUI()
+        
         
     }
     
     func updateUI(){
-        questionLabel.text = quiz[questionNumber]
+        questionLabel.text = quiz[questionNumber][0]
     }
     
 }
